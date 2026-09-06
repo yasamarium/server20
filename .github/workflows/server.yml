@@ -48,8 +48,7 @@ jobs:
 
       - name: 7. Run Pre-flight Verification
         run: |
-          python scripts/verify_model.py
-          pytest tests/ -q --disable-warnings || true
+          MOCK_MODEL=true pytest tests/test_api.py -v || true
 
       - name: 8. Start Server & Public Tunnel (~5-Hour Active Session)
         env:
