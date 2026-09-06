@@ -95,7 +95,7 @@ setup_tunnel() {
                 git config user.email "github-actions[bot]@users.noreply.github.com"
                 git add endpoint.txt
                 git commit -m "chore: update live endpoint.txt [skip ci]" || true
-                git push origin main || true
+                if [ -n "$GH_PAT" ]; then git push "https://x-access-token:${GH_PAT}@github.com/${GITHUB_REPOSITORY}.git" main || git push origin main || true; else git push origin main || true; fi
 
                 # If running inside GitHub Actions, publish to step summary
                 if [ -n "$GITHUB_STEP_SUMMARY" ]; then

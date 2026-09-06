@@ -10,6 +10,9 @@ on:
 jobs:
   run-server:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
     timeout-minutes: 360
 
     steps:
